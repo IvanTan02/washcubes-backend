@@ -162,6 +162,9 @@ const orderSchema = new mongoose.Schema({
     barcodeID: {
         type: String,
     },
+    proofPicUrl: {
+        type: String,
+    },
     createdAt: {
         type: Date,
     },

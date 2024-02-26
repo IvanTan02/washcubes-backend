@@ -18,17 +18,17 @@ const generateNotificationId = () => {
 
 exports.sendNotification = async (req, res, next) => {
     try {
-        const { userId, orderStatus, orderId, orderLocation } = req.body;
+        const { userId, orderStatus, orderId } = req.body;
         const user = await UserModel.findOne({ "_id": userId });
         const notificationId = generateNotificationId();
         const message = {
             notification: {
                 title: "Your Laundry is Ready for " + orderStatus + "!",
-                body: "Order #" + orderId + " is now ready for " + orderStatus + " at " + orderLocation + "!"
+                body: "Order #" + orderId + " is now ready for " + orderStatus + "!"
             },
             data: {
                 title: "Your Laundry is Ready for " + orderStatus + "!",
-                message: "Order #" + orderId + " is now ready for " + orderStatus + " at " + orderLocation + "!"
+                message: "Order #" + orderId + " is now ready for " + orderStatus + "!"
             }
         };
         await NotificationServices.saveNotification(notificationId, userId, message.data.title, message.data.message);
